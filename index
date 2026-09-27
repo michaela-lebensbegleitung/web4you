@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <!-- viewport-fit=cover für randloses Design auf iPhones mit Notch/Dynamic Island -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#fdfbf7">
+    <title>Michaela Schäfer – Ganzheitliche Lebensbegleiterin & Buchautorin</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        sage: {
+                            50: '#f4f7f4',
+                            100: '#e3eae3',
+                            200: '#c8d6c8',
+                            300: '#a3bba3',
+                            500: '#698769',
+                            700: '#485e48',
+                            900: '#2b392b',
+                        },
+                        cream: {
+                            50: '#fdfbf7',
+                            100: '#f8f4ec',
+                            200: '#f0e6d5',
+                            300: '#e5d3b8',
+                        },
+                        gold: {
+                            300: '#e2c992',
+                            400: '#d4af37',
+                            500: '#c59b27',
+                        },
+                        warmgrey: '#7d7871'
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* iOS / Safari Spezial-Optimierungen & Smooth Rendering auf Mac */
+        :root {
+            --sat: env(safe-area-inset-top);
+            --sar: env(safe-area-inset-right);
+            --sab: env(safe-area-inset-bottom);
+            --sal: env(safe-area-inset-left);
+        }
+
+        html, body {
+            background-color: #fdfbf7;
+            color: #333d33;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-tap-highlight-color: transparent;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        h1, h2, h3, .font-serif-custom {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+        }
+        
+        /* Mac WebKit & iOS Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f8f4ec;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c8d6c8;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a3bba3;
+        }
+
+        /* Glassmorphic Cards (Vollständige -webkit-Unterstützung für Safari) */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.82);
+            -webkit-backdrop-filter: blur(16px);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(227, 234, 227, 0.7);
+        }
+        
+        .glass-nav {
+            background: rgba(253, 251, 247, 0.88);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+        }
+
+        /* Flüssiges Fluid-Scrolling für iOS Modals & Listen */
+        .touch-scroll {
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Animationen */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-6px); }
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Safe Area Abstände für iPhones */
+        .pb-safe {
+            padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
+        }
+        .pt-safe {
+            padding-top: max(1rem, env(safe-area-inset-top));
+        }
+    </style>
+</head>
+<body class="relative min-h-screen text-slate-800 selection:bg-sage-200 selection:text-sage-900">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-40 glass-nav border-b border-sage-100 transition-all duration-300 pt-safe">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 sm:h-20">
+                <a href="#" class="flex items-center space-x-3 group">
+                    <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-sage-100 border border-sage-300 flex items-center justify-center text-sage-700 font-serif text-lg sm:text-xl group-hover:bg-sage-200 transition">
+                        M
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-serif text-xl sm:text-2xl tracking-wide font-medium text-sage-900 leading-tight">Michaela Schäfer</span>
+                        <span class="text-[10px] sm:text-xs tracking-wider text-sage-700 uppercase font-light">Lebensbegleitung &amp; Autorin</span>
+                    </div>
+                </a>
+
+                <div class="hidden md:flex items-center space-x-6 lg:space-x-8 text-sm tracking-wide font-medium text-slate-700">
+                    <a href="#about" class="hover:text-sage-700 transition">Über Mich</a>
+                    <a href="#services" class="hover:text-sage-700 transition">Begleitung</a>
+                    <a href="#codex" class="hover:text-sage-700 transition">Codex</a>
+                    <a href="#books" class="hover:text-sage-700 transition">Bücher</a>
+                    <a href="#first-step" class="hover:text-sage-700 transition">Erstgespräch</a>
+                    <a href="#energy" class="hover:text-sage-700 transition">Energieausgleich</a>
+                    <a href="https://wa.me/491777518892?text=Meine%20Reise" target="_blank" rel="noopener noreferrer" 
+                       class="inline-flex items-center space-x-2 bg-sage-700 text-white px-5 py-2.5 rounded-full hover:bg-sage-900 transition shadow-sm hover:shadow active:scale-95">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                        <span>WhatsApp</span>
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-sage-900 focus:outline-none p-2 rounded-lg active:bg-sage-100" aria-label="Menü öffnen">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-cream-50/95 border-b border-sage-200 px-6 pt-2 pb-6 space-y-3 shadow-xl backdrop-blur-lg">
+            <a href="#about" class="block py-2 text-sage-900 font-medium hover:text-sage-700 active:translate-x-1 transition-transform">Über Mich</a>
+            <a href="#services" class="block py-2 text-sage-900 font-medium hover:text-sage-700 active:translate-x-1 transition-transform">Begleitung</a>
+            <a href="#codex" class="block py-2 text-sage-900 font-medium hover:text-sage-700 active:translate-x-1 transition-transform">Codex</a>
+            <a href="#books" class="block py-2 text-sage-900 font-medium hover:text-sage-700 active:translate-x-1 transition-transform">Bücher</a>
+            <a href="#first-step" class="block py-2 text-sage-900 font-medium hover:text-sage-700 active:translate-x-1 transition-transform">Erstgespräch</a>
+            <a href="#energy" class="block py-2 text-sage-900 font-medium hover:text-sage-700 active:translate-x-1 transition-transform">Energieausgleich</a>
+            <a href="https://wa.me/491777518892?text=Meine%20Reise" target="_blank" rel="noopener noreferrer"
+               class="flex items-center justify-center space-x-2 bg-sage-700 text-white py-3.5 rounded-full hover:bg-sage-900 active:scale-98 transition shadow">
+                <i class="fa-brands fa-whatsapp text-xl"></i>
+                <span>Kontakt via WhatsApp</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-28 pb-16 md:pt-40 md:pb-32 overflow-hidden bg-gradient-to-b from-cream-100 via-cream-50 to-sage-50/30">
+        <div class="absolute top-10 left-10 w-72 h-72 sm:w-96 sm:h-96 bg-sage-200/40 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-10 right-10 w-64 h-64 sm:w-80 sm:h-80 bg-gold-300/20 rounded-full blur-3xl pointer-events-none"></div>
+        
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <div class="inline-block mb-4 px-4 py-1.5 rounded-full bg-sage-100/80 border border-sage-300/50 text-sage-900 text-xs sm:text-sm font-medium tracking-widest uppercase animate-float">
+                Ganzheitliche Lebensbegleitung &amp; Buchautorin
+            </div>
+            
+            <h1 class="font-serif text-3xl sm:text-6xl md:text-7xl font-normal text-sage-900 leading-tight mb-6 tracking-tight">
+                Raum für Verständnis,<br class="hidden sm:inline"> Heilung &amp; Bewusstwerdung
+            </h1>
+
+            <p class="font-serif text-lg sm:text-2xl md:text-3xl italic text-sage-700 max-w-3xl mx-auto mb-8 font-light">
+                "Schön, dass du hier bist. Herzlich Willkommen."
+            </p>
+
+            <div class="max-w-2xl mx-auto text-slate-700 text-base sm:text-lg leading-relaxed mb-10 font-light px-2 sm:px-0">
+                Manchmal gerät das Leben aus der Balance. Alte Wunden drängen an die Oberfläche, Gefühle werden zur Belastung oder schwierige Lebensphasen rauben uns die Kraft. In solchen Momenten ist es gut, einen Menschen an seiner Seite zu wissen, der nicht nur zuhört, sondern versteht.
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 px-4 sm:px-0">
+                <a href="https://wa.me/491777518892?text=Meine%20Reise" target="_blank" rel="noopener noreferrer"
+                   class="w-full sm:w-auto px-8 py-4 bg-sage-700 hover:bg-sage-900 text-white rounded-full font-medium transition shadow-lg hover:shadow-xl active:scale-95 flex items-center justify-center space-x-3 text-base">
+                    <i class="fa-brands fa-whatsapp text-xl"></i>
+                    <span>Erstgespräch vereinbaren ("Meine Reise")</span>
+                </a>
+                <a href="#about" class="w-full sm:w-auto px-8 py-4 bg-white/80 hover:bg-white text-sage-900 border border-sage-300 rounded-full font-medium transition shadow-sm hover:shadow active:scale-95 flex items-center justify-center">
+                    Mehr erfahren
+                </a>
+            </div>
+            
+            <div class="mt-12 flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs sm:text-sm text-sage-700">
+                <span class="flex items-center space-x-1.5"><i class="fa-solid fa-shield-halved text-gold-500"></i><span>Geschützter Raum</span></span>
+                <span class="hidden sm:inline text-sage-300">•</span>
+                <span class="flex items-center space-x-1.5"><i class="fa-solid fa-heart text-gold-500"></i><span>Tiefe Empathie</span></span>
+                <span class="hidden sm:inline text-sage-300">•</span>
+                <span class="flex items-center space-x-1.5"><i class="fa-solid fa-brain text-gold-500"></i><span>Neurologie &amp; Psychiatrie</span></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 sm:py-24 bg-cream-50 relative">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+                
+                <div class="lg:col-span-5 relative">
+                    <div class="relative mx-auto max-w-sm lg:max-w-none">
+                        <div class="absolute -inset-2 rounded-3xl bg-gradient-to-tr from-sage-300 to-gold-300 opacity-50 blur-lg"></div>
+                        <div class="relative rounded-3xl overflow-hidden glass-card p-6 sm:p-8 shadow-xl text-center">
+                            <div class="w-40 h-40 sm:w-48 sm:h-48 mx-auto rounded-full bg-gradient-to-b from-sage-100 to-sage-200 border-4 border-white shadow-md flex items-center justify-center mb-6 overflow-hidden">
+                                <i class="fa-solid fa-user-circle text-sage-400 text-8xl sm:text-9xl mt-4"></i>
+                            </div>
+                            <h3 class="font-serif text-2xl sm:text-3xl font-medium text-sage-900">Michaela Schäfer</h3>
+                            <p class="text-sage-700 font-serif italic mb-4 text-sm sm:text-base">Ganzheitliche Lebensbegleiterin &amp; Buchautorin</p>
+                            <div class="w-12 h-0.5 bg-gold-400 mx-auto my-4"></div>
+                            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-light">
+                                Verbindet wissenschaftliche Fachkompetenz aus Neurologie &amp; Psychiatrie mit tiefem Herzenswissen und ganzheitlichen Heilwegen.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-block px-3 py-1 rounded-md bg-sage-100 text-sage-800 text-xs font-semibold tracking-wider uppercase">
+                        Ganzheitlicher Ansatz
+                    </div>
+                    <h2 class="font-serif text-3xl sm:text-5xl text-sage-900 font-normal leading-tight">
+                        Ich sehe Sie als individuellen Menschen mit Ihrer ganz eigenen Geschichte.
+                    </h2>
+                    
+                    <div class="text-slate-700 leading-relaxed space-y-4 text-base sm:text-lg font-light">
+                        <p>
+                            Mein Name ist <strong class="font-medium text-sage-900">Michaela Schäfer</strong>. Als ganzheitliche Lebensbegleiterin und Buchautorin begleite ich Sie von Herzen gerne auf Ihrem ganz persönlichen Weg.
+                        </p>
+                        <p>
+                            Gerne begleite ich Sie mit meiner gesamten Erfahrung aus <span class="bg-sage-100/70 px-1.5 py-0.5 rounded text-sage-900 font-medium">Neurologie und Psychiatrie</span>, vereint mit einem tiefen Verständnis für ganzheitliche Heilwege.
+                        </p>
+                        <p>
+                            Ob Aufarbeitung alter Traumata, Begleitung in akuten Krisen, Herausforderungen in Familie und Partnerschaft oder der Wunsch zu mehr Selbstliebe – dafür biete ich einen geschützten Raum, der von <strong class="font-medium text-sage-900">Respekt, tiefer Empathie und jahrzehntelanger Erfahrung</strong> getragen und gehalten wird.
+                        </p>
+                    </div>
+
+                    <div class="pt-4 border-t border-sage-200 grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
+                        <div class="p-3.5 rounded-xl bg-white/70 border border-sage-100 shadow-sm">
+                            <i class="fa-solid fa-leaf text-sage-600 mb-1 text-lg"></i>
+                            <div class="font-serif font-medium text-sage-900 text-sm sm:text-base">Ganzheitlich</div>
+                            <div class="text-xs text-slate-500">Körper, Geist &amp; Seele</div>
+                        </div>
+                        <div class="p-3.5 rounded-xl bg-white/70 border border-sage-100 shadow-sm">
+                            <i class="fa-solid fa-stethoscope text-sage-600 mb-1 text-lg"></i>
+                            <div class="font-serif font-medium text-sage-900 text-sm sm:text-base">Fundiert</div>
+                            <div class="text-xs text-slate-500">Neurologie &amp; Psychiatrie</div>
+                        </div>
+                        <div class="p-3.5 rounded-xl bg-white/70 border border-sage-100 shadow-sm col-span-2 sm:col-span-1">
+                            <i class="fa-solid fa-hand-holding-heart text-sage-600 mb-1 text-lg"></i>
+                            <div class="font-serif font-medium text-sage-900 text-sm sm:text-base">Empathisch</div>
+                            <div class="text-xs text-slate-500">Geschützter Raum</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-16 sm:py-24 bg-sage-50/50 relative">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+                <h2 class="font-serif text-3xl sm:text-5xl text-sage-900 mb-4">Bereiche der Begleitung</h2>
+                <p class="text-slate-600 text-base sm:text-lg font-light">
+                    Jedes Anliegen verdient Achtsamkeit. Ich stehe an Ihrer Seite in verschiedenen Lebenslagen.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+                
+                <!-- Card 1: Traumata -->
+                <div class="glass-card p-6 sm:p-8 rounded-2xl shadow-sm hover:shadow-md transition border border-sage-200/80 group">
+                    <div class="w-12 h-12 rounded-xl bg-sage-100 flex items-center justify-center text-sage-700 text-xl mb-5 group-hover:bg-sage-700 group-hover:text-white transition">
+                        <i class="fa-solid fa-hand-holding-hand"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl font-medium text-sage-900 mb-3">Aufarbeitung alter Traumata</h3>
+                    <p class="text-slate-600 leading-relaxed font-light text-sm sm:text-base">
+                        Alte Wunden drängen oft unbemerkt an die Oberfläche. Mit einfühlsamen, ganzheitlichen Methoden lösen wir behutsam alte Verstrickungen und wiederkehrende Verhaltensmuster auf.
+                    </p>
+                </div>
+
+                <!-- Card 2: Krisen -->
+                <div class="glass-card p-6 sm:p-8 rounded-2xl shadow-sm hover:shadow-md transition border border-sage-200/80 group">
+                    <div class="w-12 h-12 rounded-xl bg-sage-100 flex items-center justify-center text-sage-700 text-xl mb-5 group-hover:bg-sage-700 group-hover:text-white transition">
+                        <i class="fa-solid fa-compass"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl font-medium text-sage-900 mb-3">Begleitung in akuten Krisen</h3>
+                    <p class="text-slate-600 leading-relaxed font-light text-sm sm:text-base">
+                        Wenn schwierige Lebensphasen die Kraft rauben, gebe ich Ihnen Halt, Orientierung und klare Schritte, um wieder in Ihre Mitte und Stärke zu finden.
+                    </p>
+                </div>
+
+                <!-- Card 3: Familie & Partnerschaft -->
+                <div class="glass-card p-6 sm:p-8 rounded-2xl shadow-sm hover:shadow-md transition border border-sage-200/80 group">
+                    <div class="w-12 h-12 rounded-xl bg-sage-100 flex items-center justify-center text-sage-700 text-xl mb-5 group-hover:bg-sage-700 group-hover:text-white transition">
+                        <i class="fa-solid fa-people-roof"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl font-medium text-sage-900 mb-3">Familie &amp; Partnerschaft</h3>
+                    <p class="text-slate-600 leading-relaxed font-light text-sm sm:text-base">
+                        Herausforderungen in Beziehungen verstehen, Kommunikationsmuster durchbrechen und wieder zu einer verständnisvollen Verbindung miteinander finden.
+                    </p>
+                </div>
+
+                <!-- Card 4: Selbstliebe -->
+                <div class="glass-card p-6 sm:p-8 rounded-2xl shadow-sm hover:shadow-md transition border border-sage-200/80 group">
+                    <div class="w-12 h-12 rounded-xl bg-sage-100 flex items-center justify-center text-sage-700 text-xl mb-5 group-hover:bg-sage-700 group-hover:text-white transition">
+                        <i class="fa-solid fa-sun"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl font-medium text-sage-900 mb-3">Wunsch nach Selbstliebe</h3>
+                    <p class="text-slate-600 leading-relaxed font-light text-sm sm:text-base">
+                        Erkennen Sie Ihren eigenen Wert. Lernen Sie, sich selbst mit Mitgefühl, Respekt und tiefer Akzeptanz zu begegnen. Lernen Sie Grenzen zu setzen ohne Schuld und Scham, um inneren Frieden und Ruhe zu etablieren.
+                    </p>
+                </div>
+
+                <!-- Card 5: Psychische Erkrankungen -->
+                <div class="glass-card p-6 sm:p-8 rounded-2xl shadow-sm hover:shadow-md transition border border-sage-200/80 group md:col-span-2">
+                    <div class="w-12 h-12 rounded-xl bg-sage-100 flex items-center justify-center text-sage-700 text-xl mb-5 group-hover:bg-sage-700 group-hover:text-white transition">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl sm:text-3xl font-medium text-sage-900 mb-3">Psychische Erkrankungen verstehen, auch für Angehörige</h3>
+                    <p class="text-slate-600 leading-relaxed font-light mb-6 text-sm sm:text-base">
+                        Psychische Erkrankungen sind komplex, oft unsichtbar und nicht immer leicht zu verstehen. Verständnis, Geduld und ein offenes Herz können Halt geben.
+                    </p>
+
+                    <div class="bg-white/70 p-5 sm:p-6 rounded-xl border border-sage-200/80">
+                        <h4 class="font-serif text-lg font-medium text-sage-900 mb-3">Angehörige dürfen lernen:</h4>
+                        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs sm:text-sm text-slate-700 font-light">
+                            <li class="flex items-start space-x-2">
+                                <i class="fa-solid fa-check text-sage-600 mt-1 shrink-0"></i>
+                                <span>zu verstehen, dass Erkrankungen keine Schwäche sind</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <i class="fa-solid fa-check text-sage-600 mt-1 shrink-0"></i>
+                                <span>zuzuhören, ohne sofort Lösungen finden zu müssen</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <i class="fa-solid fa-check text-sage-600 mt-1 shrink-0"></i>
+                                <span>Geduld zu haben und Veränderungen auszuhalten</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <i class="fa-solid fa-check text-sage-600 mt-1 shrink-0"></i>
+                                <span>Grenzen zu setzen, ohne sich schuldig zu fühlen</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <i class="fa-solid fa-check text-sage-600 mt-1 shrink-0"></i>
+                                <span>Verantwortung abzugeben</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <i class="fa-solid fa-check text-sage-600 mt-1 shrink-0"></i>
+                                <span>Verständnis zu zeigen, ohne sich selbst dabei zu verlieren</span>
+                            </li>
+                            <li class="flex items-start space-x-2 sm:col-span-2">
+                                <i class="fa-solid fa-check text-sage-600 mt-1 shrink-0"></i>
+                                <span>Hilfe von Dritten zuzulassen</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Codex Section -->
+    <section id="codex" class="py-16 sm:py-24 bg-cream-100/70 relative border-y border-sage-100">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+                <div class="inline-block px-3 py-1 rounded-md bg-gold-300/30 text-sage-900 text-xs font-semibold tracking-wider uppercase mb-3">
+                    Werte &amp; Haltung
+                </div>
+                <h2 class="font-serif text-3xl sm:text-5xl text-sage-900 mb-4">Der Codex der Lebensbegleitung</h2>
+                <p class="text-slate-600 text-base sm:text-lg font-light">
+                    Fünf Grundpfeiler, die meine Begleitung prägen und Ihnen einen geschützten, ehrlichen und achtsamen Rahmen garantieren.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                <!-- Codex 1 -->
+                <div class="glass-card p-6 sm:p-8 rounded-2xl border border-sage-200 shadow-sm hover:shadow-md transition space-y-4">
+                    <div class="w-11 h-11 rounded-full bg-sage-700 text-gold-300 flex items-center justify-center font-serif text-lg font-bold shadow-inner">
+                        I
+                    </div>
+                    <h3 class="font-serif text-2xl font-medium text-sage-900">Würde &amp; Wertschätzung</h3>
+                    <p class="text-slate-600 text-xs sm:text-sm font-light leading-relaxed">
+                        Jeder Mensch wird unvoreingenommen und genau dort abgeholt, wo er gerade steht – ohne Bewertung, Dogmen oder Vorurteile.
+                    </p>
+                </div>
+
+                <!-- Codex 2 -->
+                <div class="glass-card p-6 sm:p-8 rounded-2xl border border-sage-200 shadow-sm hover:shadow-md transition space-y-4">
+                    <div class="w-11 h-11 rounded-full bg-sage-700 text-gold-300 flex items-center justify-center font-serif text-lg font-bold shadow-inner">
+                        II
+                    </div>
+                    <h3 class="font-serif text-2xl font-medium text-sage-900">Absolute Vertraulichkeit</h3>
+                    <p class="text-slate-600 text-xs sm:text-sm font-light leading-relaxed">
+                        Ihr Vertrauen ist das höchste Gut. Alle Gesprächsinhalte verbleiben unter strikter Verschwiegenheit in einem geschützten Raum.
+                    </p>
+                </div>
+
+                <!-- Codex 3 -->
+                <div class="glass-card p-6 sm:p-8 rounded-2xl border border-sage-200 shadow-sm hover:shadow-md transition space-y-4">
+                    <div class="w-11 h-11 rounded-full bg-sage-700 text-gold-300 flex items-center justify-center font-serif text-lg font-bold shadow-inner">
+                        III
+                    </div>
+                    <h3 class="font-serif text-2xl font-medium text-sage-900">Integrativer Ansatz</h3>
+                    <p class="text-slate-600 text-xs sm:text-sm font-light leading-relaxed">
+                        Die wohlwollende Verbindung aus fundierter Erfahrung in Neurologie und Psychiatrie mit seelischem Herzenswissen.
+                    </p>
+                </div>
+
+                <!-- Codex 4 -->
+                <div class="glass-card p-6 sm:p-8 rounded-2xl border border-sage-200 shadow-sm hover:shadow-md transition space-y-4">
+                    <div class="w-11 h-11 rounded-full bg-sage-700 text-gold-300 flex items-center justify-center font-serif text-lg font-bold shadow-inner">
+                        IV
+                    </div>
+                    <h3 class="font-serif text-2xl font-medium text-sage-900">Selbstermächtigung</h3>
+                    <p class="text-slate-600 text-xs sm:text-sm font-light leading-relaxed">
+                        Das Ziel ist nicht Abhängigkeit, sondern das Erwecken Ihrer eigenen Stärke, Selbstliebe und bewussten Handlungsfähigkeit.
+                    </p>
+                </div>
+
+                <!-- Codex 5 -->
+                <div class="glass-card p-6 sm:p-8 rounded-2xl border border-sage-200 shadow-sm hover:shadow-md transition space-y-4 md:col-span-2 lg:col-span-2">
+                    <div class="w-11 h-11 rounded-full bg-sage-700 text-gold-300 flex items-center justify-center font-serif text-lg font-bold shadow-inner">
+                        V
+                    </div>
+                    <h3 class="font-serif text-2xl font-medium text-sage-900">Ehrlichkeit &amp; Transparenz</h3>
+                    <p class="text-slate-600 text-xs sm:text-sm font-light leading-relaxed">
+                        Klare Kommunikation über die Möglichkeiten und Grenzen der Lebensbegleitung. Kein leeres Heilungsversprechen, sondern bodenständige, empathische und professionelle Begleitung.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Books Section -->
+    <section id="books" class="py-16 sm:py-24 bg-cream-100/60 relative">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+                <div class="inline-block px-3 py-1 rounded-md bg-gold-300/30 text-sage-900 text-xs font-semibold tracking-wider uppercase mb-3">
+                    Buchautorin
+                </div>
+                <h2 class="font-serif text-3xl sm:text-5xl text-sage-900 mb-4">Bücher von Michaela Schäfer</h2>
+                <p class="text-slate-600 text-base sm:text-lg font-light">
+                    Inspiration, praktische Impulse und tiefgehende Seelenarbeit für Ihre persönliche Entwicklungsreise.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Buch 1 -->
+                <div class="glass-card rounded-3xl p-6 border border-sage-200/80 shadow-md hover:shadow-xl transition duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-full h-64 bg-gradient-to-br from-sage-900 via-sage-800 to-sage-900 text-cream-50 rounded-2xl shadow-lg border-l-4 border-gold-400 p-6 flex flex-col justify-between transform group-hover:-translate-y-1 transition duration-300 relative overflow-hidden mb-6">
+                            <div class="absolute -right-10 -bottom-10 w-32 h-32 bg-gold-400/10 rounded-full blur-xl"></div>
+                            <div>
+                                <i class="fa-solid fa-book-open text-gold-400 text-2xl mb-3"></i>
+                                <div class="font-serif text-2xl font-medium leading-snug">Werden, was ich sein kann</div>
+                                <div class="text-xs text-sage-300 font-light mt-1">Impulse für Selbstfindung &amp; innere Stärke</div>
+                            </div>
+                            <div class="flex items-center justify-between border-t border-sage-700/60 pt-3">
+                                <span class="text-xs text-gold-300 font-light">Michaela Schäfer</span>
+                                <i class="fa-brands fa-amazon text-gold-400 text-lg"></i>
+                            </div>
+                        </div>
+                        <h3 class="font-serif text-2xl font-medium text-sage-900 mb-2">Werden, was ich sein kann</h3>
+                        <p class="text-slate-600 text-sm font-light leading-relaxed mb-6">
+                            Ein einfühlsamer Begleiter auf dem Weg zu mehr Selbsterkenntnis, innerem Frieden und persönlichem Entfaltungsspielraum.
+                        </p>
+                    </div>
+                    <a href="https://amzn.eu/d/07edp3st" target="_blank" rel="noopener noreferrer" 
+                       class="inline-flex items-center justify-center space-x-2 w-full py-3 px-4 bg-sage-700 hover:bg-sage-900 text-white rounded-full font-medium text-sm transition shadow active:scale-95">
+                        <i class="fa-brands fa-amazon text-base"></i>
+                        <span>Bei Amazon ansehen</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-xs ml-1"></i>
+                    </a>
+                </div>
+
+                <!-- Buch 2 -->
+                <div class="glass-card rounded-3xl p-6 border border-sage-200/80 shadow-md hover:shadow-xl transition duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-full h-64 bg-gradient-to-br from-sage-800 via-sage-900 to-slate-900 text-cream-50 rounded-2xl shadow-lg border-l-4 border-gold-400 p-6 flex flex-col justify-between transform group-hover:-translate-y-1 transition duration-300 relative overflow-hidden mb-6">
+                            <div class="absolute -right-10 -bottom-10 w-32 h-32 bg-gold-400/10 rounded-full blur-xl"></div>
+                            <div>
+                                <i class="fa-solid fa-feather-pointed text-gold-400 text-2xl mb-3"></i>
+                                <div class="font-serif text-2xl font-medium leading-snug">Pfade der Seelenheilung</div>
+                                <div class="text-xs text-sage-300 font-light mt-1">Wege aus der Krise zu neuer Hoffnung</div>
+                            </div>
+                            <div class="flex items-center justify-between border-t border-sage-700/60 pt-3">
+                                <span class="text-xs text-gold-300 font-light">Michaela Schäfer</span>
+                                <i class="fa-brands fa-amazon text-gold-400 text-lg"></i>
+                            </div>
+                        </div>
+                        <h3 class="font-serif text-2xl font-medium text-sage-900 mb-2">Pfade der Seelenheilung</h3>
+                        <p class="text-slate-600 text-sm font-light leading-relaxed mb-6">
+                            Praktische Methoden und ganzheitliche Einsichten zur Überwindung seelischer Belastungen und Wiedererlangung der Lebensfreude.
+                        </p>
+                    </div>
+                    <a href="https://amzn.eu/d/05AopdBW" target="_blank" rel="noopener noreferrer" 
+                       class="inline-flex items-center justify-center space-x-2 w-full py-3 px-4 bg-sage-700 hover:bg-sage-900 text-white rounded-full font-medium text-sm transition shadow active:scale-95">
+                        <i class="fa-brands fa-amazon text-base"></i>
+                        <span>Bei Amazon ansehen</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-xs ml-1"></i>
+                    </a>
+                </div>
+
+                <!-- Buch 3 -->
+                <div class="glass-card rounded-3xl p-6 border border-sage-200/80 shadow-md hover:shadow-xl transition duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-full h-64 bg-gradient-to-br from-sage-900 via-amber-950 to-sage-900 text-cream-50 rounded-2xl shadow-lg border-l-4 border-gold-400 p-6 flex flex-col justify-between transform group-hover:-translate-y-1 transition duration-300 relative overflow-hidden mb-6">
+                            <div class="absolute -right-10 -bottom-10 w-32 h-32 bg-gold-400/10 rounded-full blur-xl"></div>
+                            <div>
+                                <i class="fa-solid fa-heart-pulse text-gold-400 text-2xl mb-3"></i>
+                                <div class="font-serif text-2xl font-medium leading-snug">Lichtblicke im Schmerz</div>
+                                <div class="text-xs text-sage-300 font-light mt-1">Verständnis &amp; Halt für Betroffene &amp; Angehörige</div>
+                            </div>
+                            <div class="flex items-center justify-between border-t border-sage-700/60 pt-3">
+                                <span class="text-xs text-gold-300 font-light">Michaela Schäfer</span>
+                                <i class="fa-brands fa-amazon text-gold-400 text-lg"></i>
+                            </div>
+                        </div>
+                        <h3 class="font-serif text-2xl font-medium text-sage-900 mb-2">Lichtblicke im Schmerz</h3>
+                        <p class="text-slate-600 text-sm font-light leading-relaxed mb-6">
+                            Tiefgreifende Orientierung für den Umgang mit psychischen und emotionalen Herausforderungen im Alltag.
+                        </p>
+                    </div>
+                    <a href="https://amzn.eu/d/07ZOh1a5" target="_blank" rel="noopener noreferrer" 
+                       class="inline-flex items-center justify-center space-x-2 w-full py-3 px-4 bg-sage-700 hover:bg-sage-900 text-white rounded-full font-medium text-sm transition shadow active:scale-95">
+                        <i class="fa-brands fa-amazon text-base"></i>
+                        <span>Bei Amazon ansehen</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-xs ml-1"></i>
+                    </a>
+                </div>
+
+            </div>
+            
+            <!-- Zitat-Banner -->
+            <div class="mt-12 text-center p-6 bg-white/60 rounded-2xl border border-sage-200/60 max-w-2xl mx-auto">
+                <p class="font-serif italic text-sage-800 text-base sm:text-lg">
+                    "Bücher öffnen Fenster zur Seele und schenken uns die Erkenntnis, dass wir auf unserem Weg nie alleine sind."
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- First Step / WhatsApp -->
+    <section id="first-step" class="py-16 sm:py-24 bg-gradient-to-b from-sage-50 to-cream-50 relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            
+            <div class="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-sage-100 text-sage-700 text-2xl mb-6 shadow-inner">
+                <i class="fa-brands fa-whatsapp"></i>
+            </div>
+
+            <h2 class="font-serif text-3xl sm:text-5xl text-sage-900 mb-6">Ihr kostenloses Erstgespräch</h2>
+            
+            <div class="glass-card rounded-3xl p-6 sm:p-10 shadow-lg border border-sage-200 text-left space-y-6 max-w-2xl mx-auto">
+                <div class="flex items-start space-x-4">
+                    <div class="w-8 h-8 rounded-full bg-sage-700 text-white flex items-center justify-center shrink-0 mt-1 font-semibold text-sm">
+                        1
+                    </div>
+                    <div>
+                        <h4 class="font-serif text-lg sm:text-xl font-medium text-sage-900">Kontakt per WhatsApp oder Nachricht</h4>
+                        <p class="text-slate-600 text-xs sm:text-sm mt-1 font-light">
+                            Senden Sie mir ganz unkompliziert eine Nachricht mit dem Code: <strong class="text-sage-900 font-semibold">"Meine Reise"</strong>.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex items-start space-x-4">
+                    <div class="w-8 h-8 rounded-full bg-sage-700 text-white flex items-center justify-center shrink-0 mt-1 font-semibold text-sm">
+                        2
+                    </div>
+                    <div>
+                        <h4 class="font-serif text-lg sm:text-xl font-medium text-sage-900">15-minütiges Kennenlernen</h4>
+                        <p class="text-slate-600 text-xs sm:text-sm mt-1 font-light">
+                            In einem kostenlosen 15-minütigen Gespräch erörtern wir offene Fragen und besprechen vertrauensvoll die weiteren Vorgehensweisen.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="pt-4 border-t border-sage-200 text-center">
+                    <p class="text-sage-800 font-serif italic text-base sm:text-lg mb-6">
+                        "Ich freue mich darauf, Sie auf Ihrem Weg begleiten zu dürfen."
+                    </p>
+                    
+                    <a href="https://wa.me/491777518892?text=Meine%20Reise" target="_blank" rel="noopener noreferrer" 
+                       class="inline-flex items-center justify-center space-x-3 bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-full font-medium transition shadow-md hover:shadow-lg w-full sm:w-auto">
+                        <i class="fa-brands fa-whatsapp text-xl sm:text-2xl"></i>
+                        <span class="text-sm sm:text-base">Jetzt Nachricht mit "Meine Reise" senden</span>
+                    </a>
+                    
+                    <div class="mt-4 text-xs text-slate-500">
+                        Mobil / WhatsApp: <a href="tel:+491777518892" class="underline hover:text-sage-800">+49 177 - 75 188 92</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Energy Balance / PayPal -->
+    <section id="energy" class="py-16 sm:py-24 bg-cream-50 relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="font-serif text-3xl sm:text-4xl text-sage-900 mb-4">Energieausgleich</h2>
+            <p class="text-slate-600 text-sm sm:text-lg font-light max-w-2xl mx-auto mb-8">
+                Der Energieausgleich für eine gemeinsame Begleitung erfolgt bequem und sicher über PayPal, nach vorheriger individueller Vereinbarung.
+            </p>
+
+            <div class="glass-card rounded-2xl p-6 sm:p-8 max-w-md mx-auto border border-sage-200 shadow-md">
+                <i class="fa-brands fa-paypal text-4xl text-blue-800 mb-4"></i>
+                <h3 class="font-serif text-2xl text-sage-900 mb-2">PayPal Zahlungsverbindung</h3>
+                <p class="text-xs text-slate-500 mb-3">
+                    Senden Sie den vereinbarten Betrag direkt an die hinterlegte PayPal-Adresse oder nutzen Sie den Button unten.
+                </p>
+                <div class="bg-sage-100/70 py-2.5 px-4 rounded-xl text-sage-900 font-mono text-xs sm:text-sm mb-6 break-all font-medium border border-sage-200">
+                    <i class="fa-regular fa-envelope text-sage-700 mr-2"></i>michaelaschaefer1104@gmail.com
+                </div>
+                <a href="https://www.paypal.com/paypalme/michaelaschaefer1104" target="_blank" rel="noopener noreferrer" 
+                   class="inline-flex items-center justify-center space-x-2 bg-blue-600 hover:bg-blue-700 active:scale-95 text-white px-6 py-3.5 rounded-full font-medium transition shadow w-full text-sm sm:text-base">
+                    <i class="fa-brands fa-paypal"></i>
+                    <span>Direkt zu PayPal senden</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Audio Player -->
+    <div id="audio-widget" class="fixed bottom-[calc(1rem+env(safe-area-inset-bottom))] left-4 right-4 sm:right-auto sm:left-6 z-40 glass-card rounded-2xl p-3 shadow-2xl border border-sage-200 transition-all duration-300 sm:max-w-xs">
+        <div class="flex items-center space-x-3">
+            <button id="audio-toggle-btn" class="w-10 h-10 rounded-full bg-sage-700 hover:bg-sage-900 active:scale-90 text-white flex items-center justify-center transition shrink-0" aria-label="Musik abspielen">
+                <i id="audio-icon" class="fa-solid fa-play"></i>
+            </button>
+            <div class="flex-1 min-w-0">
+                <div class="text-xs font-semibold text-sage-900 truncate" id="audio-title">Sanfte Begleitmusik</div>
+                <div class="text-[10px] text-slate-500 flex items-center space-x-2">
+                    <span id="audio-status">Pausiert</span>
+                    <span>•</span>
+                    <label for="custom-audio-file" class="underline cursor-pointer hover:text-sage-800">Eigene Musik</label>
+                    <input type="file" id="custom-audio-file" accept="audio/*" class="hidden">
+                </div>
+            </div>
+            <div class="flex items-center space-x-1">
+                <i class="fa-solid fa-volume-high text-xs text-sage-600"></i>
+                <input type="range" id="volume-slider" min="0" max="1" step="0.05" value="0.5" class="w-12 h-1 bg-sage-200 rounded-lg appearance-none cursor-pointer accent-sage-700">
+            </div>
+        </div>
+        <audio id="bg-music" loop preload="none">
+            <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=meditation-relaxing-112349.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-sage-900 text-cream-100 pt-16 pb-safe border-t border-sage-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <div class="md:col-span-2 space-y-4">
+                    <div class="font-serif text-2xl sm:text-3xl font-medium text-cream-50">Michaela Schäfer</div>
+                    <p class="text-sage-200 text-xs sm:text-sm font-light leading-relaxed max-w-sm">
+                        Ganzheitliche Lebensbegleiterin &amp; Buchautorin. Geschützter Raum für Heilung, Entwicklung und neue Perspektiven.
+                    </p>
+                    <p class="text-xs text-sage-300 font-light">
+                        Kaiser-Friedrich-Str. 82, 41560 Neuss
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-serif text-lg text-cream-50 mb-3">Kontakt &amp; Zahlung</h4>
+                    <ul class="text-xs text-sage-300 space-y-2 font-light">
+                        <li><i class="fa-solid fa-phone text-gold-400 mr-2"></i>+49 177 - 75 188 92</li>
+                        <li><i class="fa-brands fa-whatsapp text-gold-400 mr-2"></i>WhatsApp: 0177 - 75 188 92</li>
+                        <li><i class="fa-solid fa-envelope text-gold-400 mr-2"></i>michaelaschaefer1104@gmail.com</li>
+                        <li><i class="fa-solid fa-comment text-gold-400 mr-2"></i>Code: "Meine Reise"</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-serif text-lg text-cream-50 mb-3">Rechtliches</h4>
+                    <ul class="text-xs text-sage-300 space-y-2 font-light">
+                        <li><button onclick="openModal('impressum-modal')" class="hover:text-gold-300 transition underline text-left">Impressum</button></li>
+                        <li><button onclick="openModal('agb-modal')" class="hover:text-gold-300 transition underline text-left">Allgemeine Geschäftsbedingungen (AGB)</button></li>
+                        <li><button onclick="openModal('datenschutz-modal')" class="hover:text-gold-300 transition underline text-left">Datenschutzerklärung</button></li>
+                        <li><button onclick="openModal('widerruf-modal')" class="hover:text-gold-300 transition underline text-left">Widerrufsbelehrung</button></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-sage-800 text-center text-xs text-sage-400 font-light flex flex-col sm:flex-row justify-between items-center gap-2">
+                <p>&copy; <span id="current-year"></span> Michaela Schäfer. Alle Rechte vorbehalten.</p>
+                <p>Ganzheitliche Lebensbegleitung &amp; Autorin</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODALS -->
+
+    <!-- Impressum Modal -->
+    <div id="impressum-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-md flex items-center justify-center p-4 sm:p-6">
+        <div class="bg-cream-50 rounded-3xl max-w-2xl w-full max-h-[80vh] overflow-y-auto touch-scroll p-6 sm:p-8 shadow-2xl border border-sage-200 relative">
+            <button onclick="closeModal('impressum-modal')" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-sage-100 text-sage-900 flex items-center justify-center hover:bg-sage-200 active:scale-90 transition">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h2 class="font-serif text-2xl sm:text-3xl text-sage-900 mb-4">Impressum</h2>
+            <div class="text-xs sm:text-sm text-slate-700 space-y-3 leading-relaxed font-light">
+                <p><strong>Angaben gemäß § 5 TMG:</strong></p>
+                <p>
+                    <strong>Michaela Schäfer</strong><br>
+                    Ganzheitliche Lebensbegleiterin &amp; Buchautorin<br>
+                    Kaiser-Friedrich-Str. 82<br>
+                    41560 Neuss<br>
+                    Telefon / Mobil: +49 177 - 75 188 92<br>
+                    WhatsApp: 0177 - 75 188 92<br>
+                    E-Mail / PayPal: michaelaschaefer1104@gmail.com
+                </p>
+                <p><strong>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV / § 55 Abs. 2 RStV:</strong><br>Michaela Schäfer, Kaiser-Friedrich-Str. 82, 41560 Neuss</p>
+                <p><strong>Wichtiger Rechtshinweis / Abgrenzung:</strong><br>Die angebotenen Begleitungen, Beratungen, Impulse und Inhalte ersetzen keine medizinische, psychiatrische oder psychotherapeutische Behandlung im schulmedizinischen Sinne. Sie dienen ausschließlich der ganzheitlichen Seelen- und Lebensunterstützung sowie der persönlichen Entwicklung.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- AGB Modal -->
+    <div id="agb-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-md flex items-center justify-center p-4 sm:p-6">
+        <div class="bg-cream-50 rounded-3xl max-w-3xl w-full max-h-[80vh] overflow-y-auto touch-scroll p-6 sm:p-8 shadow-2xl border border-sage-200 relative">
+            <button onclick="closeModal('agb-modal')" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-sage-100 text-sage-900 flex items-center justify-center hover:bg-sage-200 active:scale-90 transition">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h2 class="font-serif text-2xl sm:text-3xl text-sage-900 mb-4">Allgemeine Geschäftsbedingungen (AGB)</h2>
+            <div class="text-xs sm:text-sm text-slate-700 space-y-4 leading-relaxed font-light">
+                <h4 class="font-semibold text-sage-900">§ 1 Geltungsbereich &amp; Vertragspartner</h4>
+                <p>Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für alle Verträge, Beratungsleistungen und Lebensbegleitungen zwischen Michaela Schäfer (Kaiser-Friedrich-Str. 82, 41560 Neuss) und ihren Klientinnen und Klienten.</p>
+
+                <h4 class="font-semibold text-sage-900">§ 2 Erstgespräch &amp; Terminvereinbarung</h4>
+                <p>Das erste Orientierungsgespräch dauert 15 Minuten und ist kostenfrei. Es dient dem gegenseitigen Kennenlernen und der Erörterung möglicher Vorgehensweisen. Terminvereinbarungen erfolgen individuell per E-Mail, Telefon oder WhatsApp.</p>
+
+                <h4 class="font-semibold text-sage-900">§ 3 Energieausgleich &amp; Zahlungsbedingungen</h4>
+                <p>Der Energieausgleich für weiterführende Begleitungen wird vorab individuell vereinbart. Die Zahlung erfolgt per PayPal an michaelaschaefer1104@gmail.com oder nach Absprache. Sofern nicht anders vereinbart, ist der Betrag vor dem vereinbarten Termin zu entrichten.</p>
+
+                <h4 class="font-semibold text-sage-900">§ 4 Eigenverantwortung &amp; Haftungsausschluss</h4>
+                <p>Die Teilnahme an den Begleitungen erfolgt in vollständiger Eigenverantwortung. Die angebotene Begleitung stellt keine medizinische oder psychotherapeutische Diagnose oder Notfallbehandlung dar. Bei akuten psychischen Krisen oder medizinischen Notfällen ist unverzüglich ein Facharzt, eine Klinik oder der Notruf zu kontaktieren.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Datenschutz Modal -->
+    <div id="datenschutz-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-md flex items-center justify-center p-4 sm:p-6">
+        <div class="bg-cream-50 rounded-3xl max-w-3xl w-full max-h-[80vh] overflow-y-auto touch-scroll p-6 sm:p-8 shadow-2xl border border-sage-200 relative">
+            <button onclick="closeModal('datenschutz-modal')" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-sage-100 text-sage-900 flex items-center justify-center hover:bg-sage-200 active:scale-90 transition">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h2 class="font-serif text-2xl sm:text-3xl text-sage-900 mb-4">Datenschutzerklärung</h2>
+            <div class="text-xs sm:text-sm text-slate-700 space-y-4 leading-relaxed font-light">
+                <h4 class="font-semibold text-sage-900">1. Datenschutz auf einen Blick</h4>
+                <p>Der Schutz Ihrer persönlichen Daten ist ein wichtiges Anliegen. Nachfolgend erhalten Sie einen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen oder Kontakt aufnehmen.</p>
+
+                <h4 class="font-semibold text-sage-900">2. Verantwortliche Stelle</h4>
+                <p>Michaela Schäfer<br>Kaiser-Friedrich-Str. 82<br>41560 Neuss<br>E-Mail: michaelaschaefer1104@gmail.com<br>Telefon: +49 177 - 75 188 92</p>
+
+                <h4 class="font-semibold text-sage-900">3. Datenerfassung bei Kontaktaufnahme</h4>
+                <p>Wenn Sie per WhatsApp oder SMS Kontakt aufnehmen (z. B. mit dem Kennwort "Meine Reise"), werden Ihre Telefonnummer und die übermittelten Nachrichten ausschließlich zur Beantwortung und Terminabwicklung gespeichert und vertraulich behandelt. Es gelten ergänzend die Datenschutzbestimmungen von WhatsApp Ireland Limited.</p>
+
+                <h4 class="font-semibold text-sage-900">4. Ihre Rechte nach der DSGVO</h4>
+                <p>Sie haben jederzeit das Recht auf Auskunft, Berichtigung, Löschung oder Einschränkung der Verarbeitung Ihrer gespeicherten personenbezogenen Daten sowie das Recht auf Widerruf einer erteilten Einwilligung.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Widerruf Modal -->
+    <div id="widerruf-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-md flex items-center justify-center p-4 sm:p-6">
+        <div class="bg-cream-50 rounded-3xl max-w-2xl w-full max-h-[80vh] overflow-y-auto touch-scroll p-6 sm:p-8 shadow-2xl border border-sage-200 relative">
+            <button onclick="closeModal('widerruf-modal')" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-sage-100 text-sage-900 flex items-center justify-center hover:bg-sage-200 active:scale-90 transition">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h2 class="font-serif text-2xl sm:text-3xl text-sage-900 mb-4">Widerrufsbelehrung</h2>
+            <div class="text-xs sm:text-sm text-slate-700 space-y-3 leading-relaxed font-light">
+                <h4 class="font-semibold text-sage-900">Widerrufsrecht</h4>
+                <p>Sie haben das Recht, binnen vierzehn Tagen ohne Angabe von Gründen diesen Vertrag zu widerrufen. Die Widerrufsfrist beträgt vierzehn Tage ab dem Tag des Vertragsschlusses.</p>
+                <p>Um Ihr Widerrufsrecht auszuüben, informieren Sie bitte:</p>
+                <p><strong>Michaela Schäfer</strong><br>Kaiser-Friedrich-Str. 82<br>41560 Neuss<br>E-Mail: michaelaschaefer1104@gmail.com<br>Telefon: +49 177 - 75 188 92</p>
+                <p>mittels einer eindeutigen Erklärung (z. B. per Mail oder Post) über Ihren Entschluss, diesen Vertrag zu widerrufen.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        window.addEventListener('click', (e) => {
+            ['impressum-modal', 'agb-modal', 'datenschutz-modal', 'widerruf-modal'].forEach(id => {
+                const modal = document.getElementById(id);
+                if (e.target === modal) {
+                    closeModal(id);
+                }
+            });
+        });
+
+        // Audio-Steuerung
+        const bgMusic = document.getElementById('bg-music');
+        const audioToggleBtn = document.getElementById('audio-toggle-btn');
+        const audioIcon = document.getElementById('audio-icon');
+        const audioStatus = document.getElementById('audio-status');
+        const volumeSlider = document.getElementById('volume-slider');
+        const customAudioFile = document.getElementById('custom-audio-file');
+        const audioTitle = document.getElementById('audio-title');
+
+        let isPlaying = false;
+
+        audioToggleBtn.addEventListener('click', () => {
+            if (isPlaying) {
+                bgMusic.pause();
+                audioIcon.className = 'fa-solid fa-play';
+                audioStatus.textContent = 'Pausiert';
+            } else {
+                bgMusic.play().then(() => {
+                    audioIcon.className = 'fa-solid fa-pause';
+                    audioStatus.textContent = 'Wird abgespielt';
+                }).catch(err => {
+                    console.log("Autoplay Einschränkung:", err);
+                    audioStatus.textContent = 'Tippen zum Starten';
+                });
+            }
+            isPlaying = !isPlaying;
+        });
+
+        volumeSlider.addEventListener('input', (e) => {
+            bgMusic.volume = e.target.value;
+        });
+
+        customAudioFile.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const objectUrl = URL.createObjectURL(file);
+                bgMusic.src = objectUrl;
+                audioTitle.textContent = file.name;
+                bgMusic.play().then(() => {
+                    isPlaying = true;
+                    audioIcon.className = 'fa-solid fa-pause';
+                    audioStatus.textContent = 'Eigene Musik spielt';
+                });
+            }
+        });
+    </script>
+</body>
+</html>
